@@ -1,7 +1,6 @@
 import json
 
 import cv2
-import gpiozero as gpio
 import tensorflow as tf
 import tensorflow_hub as hub
 

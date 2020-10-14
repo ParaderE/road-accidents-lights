@@ -58,6 +58,19 @@ for key, group in tqdm(groupby(lines, lambda x: x[-1])):
     json_file[key] = mean
 json.dump(json_file, "config.json")
 logging.info("Writing to config file: Complete")
+
+prompt = input("Include trafic lights turning on/off [Y/n]")
+if not prompt or prompt.lower().startswith("y"):
+    print("Please, make configuration in board_config.json")
+    with open("board_config.json", "w") as a:
+        a.write("""{
+            # key - number of the line from the left
+            # value - pin for that line
+            }""")
+    os.environ["LIGHTS"] = 1
+else:
+    os.environ["LIGHT"] = 0
+
 print("Configuration complete. Run main.py to start working")
 
 cv2.destroyAllWindows()
