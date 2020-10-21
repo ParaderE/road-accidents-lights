@@ -107,9 +107,9 @@ class Daemon:
         cap = CamCapture()
         detector = Detector("config.json", "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1")
         while -15:
-            detector.run(cap)
+            lines = detector.run(cap)
             with open(self.stdout, "w") as stdout:
-                stdout.write("Running" + '\n')
+                stdout.write(str(lines) if lines else "No accidents" + '\n')
             time.sleep(60)
         cap.release()
 
